@@ -1,5 +1,19 @@
 <?php
 session_start();
+function tableCreation(){
+    $hostname="localhost";
+$username="root";
+$password="";
+$dbConnect= mysqli_connect($hostname,$username,$password);
+$database_name=$_SESSION["db_Name"];
+$tableName=$_POST["TabCreate"];
+$creationCommand="Create TABLE IF NOT EXIST ".$tableName.";";
+$creationQuery=mysqli_query($dbConnect,$creationCommand);
+
+
+
+}
+
 function tableSelect(){
 
 $hostname="localhost";
@@ -12,7 +26,8 @@ if($_COOKIE["goingBack"]==1){
     $tableName=$_SESSION['tableName'];
     $_COOKIE["goingBack"]=0;
 }}else{
-$tableName=$_POST["TabSel"];}
+$tableName=$_POST["TabSel"];
+}
 $colNum=0;
 $i=-1;
 if($dbConnect){
@@ -36,7 +51,14 @@ while($row = mysqli_fetch_array($colList)){
 
 }
 $_SESSION["tableName"]=$tableName;}
+if($_POST["TabSel"]){
 tableSelect();
+}else if($_POST["TabCreate"]){
+    tableCreation();
+
+}else{
+    echo "you have to fill up one of the areas";
+}
 ?>
 <!DOCTYPE html>
 <html>
