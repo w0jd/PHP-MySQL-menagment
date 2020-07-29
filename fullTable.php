@@ -1,6 +1,12 @@
 <?php
 
 session_start();
+function goBack()
+{
+  echo "<form method='post' action='tableSelect.php'>  
+  <button type='submit'>Go back</button></form>";
+  setcookie("goingBack","1",time()+60);
+}
 function fullTable()
 {
 $hostname="localhost";
@@ -48,7 +54,6 @@ echo "</thead><tbody>";
          
       }
 
-   
     
   }
   echo "</table>";
@@ -81,13 +86,14 @@ if($dbConnect){
 
 
     }
-    if($_POST['fullData']){
+    if(!$_POST['columnName']){
       fullTable();
     }else if($_POST['columnName']){
       specyficData();
     }else{
       echo "both areas can't be empty";
     }
+    goBack();
 ?>
 <!DOCTYPE html>
 <html lang="pl">

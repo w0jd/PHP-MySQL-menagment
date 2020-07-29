@@ -12,7 +12,7 @@ while ($row = mysqli_fetch_array($db_list)) {
  echo $row[0]."</br>";
 }  
 if($dbConnect){
-    echo "connected"."</br>"."</br>";
+    echo "</br>"."connected"."</br>"."</br>";
 
 }
   ?>

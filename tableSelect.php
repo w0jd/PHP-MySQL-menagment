@@ -1,11 +1,18 @@
 <?php
 session_start();
+function tableSelect(){
+
 $hostname="localhost";
 $username="root";
 $password="";
 $dbConnect= mysqli_connect($hostname,$username,$password);
 $database_name=$_SESSION["db_Name"];
-$tableName=$_POST["TabSel"];
+if(isset ($_COOKIE["goingBack"])){
+if($_COOKIE["goingBack"]==1){
+    $tableName=$_SESSION['tableName'];
+    $_COOKIE["goingBack"]=0;
+}}else{
+$tableName=$_POST["TabSel"];}
 $colNum=0;
 $i=-1;
 if($dbConnect){
@@ -28,7 +35,8 @@ while($row = mysqli_fetch_array($colList)){
     
 
 }
-$_SESSION["tableName"]=$tableName;
+$_SESSION["tableName"]=$tableName;}
+tableSelect();
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,7 +48,8 @@ $_SESSION["tableName"]=$tableName;
                     <label for="fullData">Show all data from selecteted table</label>
             </section>
             <section>
-                    <label for="columnName">Please type a name of the coulmn you want to select </label><input type="text" name="columnName" id="columnName">
+                    <label for="columnName">Please type a name of the coulmn you want to select </label>
+                    <input type="text" name="columnName" id="columnName">
 </br><button type="submit" >Send</button>
                 </form>
                 
