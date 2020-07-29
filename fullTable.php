@@ -83,8 +83,10 @@ if($dbConnect){
     }
     if($_POST['fullData']){
       fullTable();
-    }else{
+    }else if($_POST['columnName']){
       specyficData();
+    }else{
+      echo "both areas can't be empty";
     }
 ?>
 <!DOCTYPE html>
