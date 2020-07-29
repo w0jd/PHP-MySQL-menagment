@@ -1,5 +1,4 @@
 <?php 
-
 session_start();
 session_regenerate_id();
 $hostname="localhost";
@@ -8,6 +7,7 @@ $password="";
 $database_name=$_POST["db_Name"];
 $dbConnect= mysqli_connect($hostname,$username,$password);
 $_SESSION["db_Name"]=$database_name;
+
 if($dbConnect){
 
       

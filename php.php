@@ -1,9 +1,15 @@
 <?php 
-$hostname="localhost";
-$username="root";
-$password="";
+function connectingDB(){
+  $hostname="localhost";
+  $username="root";
+  $password="";
+  $dbConnect= mysqli_connect($hostname,$username,$password);
+  return $dbConnect;
+}
+connectingDB();
+
+$dbConnect=connectingDB();
 $database_name;
-$dbConnect= mysqli_connect($hostname,$username,$password);
 $dbShow="SHOW DATABASES;";
 $db_list = mysqli_query($dbConnect, "SHOW DATABASES");
 
