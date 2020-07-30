@@ -1,46 +1,28 @@
 <?php
 
  session_start();
-
+ include 'phpFunctions/functions.php';
  function goBack(){
     echo "<form method='post' action='dbSelection.php'>  
     <button type='submit'>Go back</button></form>";
-    setcookie("GoingToDBSelection","1",time()+30);}
+    setcookie("goingBack","1",time()+60*60);}
 
  function tableCreation(){
-    $hostname="localhost";
-    $username="root";
-    $password="";
-    $dbConnect= mysqli_connect($hostname,$username,$password);
+    include 'phpFunctions/functions.php';
+    $dbConnect= mysqlConection();
     $database_name=$_SESSION["db_Name"];
     $tableName=$_POST["TabCreate"];
     $creationCommand="Create TABLE IF NOT EXIST ".$tableName.";";
     $creationQuery=mysqli_query($dbConnect,$creationCommand);}
- function cookieCheck($sessionName,$inputName){
-    if(isset ($_COOKIE["goingBack"])){
-        if($_COOKIE["goingBack"]==1){
-            $varName=$sessionName;
-            $_COOKIE["goingBack"]=0;
-         
-        }}else{
-         $varName=$inputName;
-        
-        }
-    return $varName;
-    }
  function tableSelect(){
 
-  $hostname="localhost";
-  $username="root";
-  $password="";
-  $dbConnect= mysqli_connect($hostname,$username,$password);
+ 
+    $dbConnect= mysqlConection();
   $database_name=$_SESSION["db_Name"];
-                      if(isset($_POST["TabSel"])){
-                            $tableName =cookieCheck($_POST["TabSel"],$_POST["TabSel"]);
-                        }else{
-                            $tableName=cookieCheck($_SESSION['tableName'],$_SESSION['tableName']);
-                            
-                        }
+    if(isset($_POST["TabSel"])){
+     $tableName =cookieCheck($_POST["TabSel"],$_POST["TabSel"]);
+     }else{
+     $tableName=cookieCheck($_SESSION['tableName'],$_SESSION['tableName']);}
                           
     $colNum=0;
     $i=-1;

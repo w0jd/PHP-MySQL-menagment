@@ -1,29 +1,22 @@
-<?php 
- function dbSelection(){
+<?php  
  session_start();
  session_regenerate_id();
- $hostname="localhost";
- $username="root";
- $password="";
-//  $database_name=$_POST["db_Name"];
- $dbConnect= mysqli_connect($hostname,$username,$password);
+ function dbSelection(){
 
+ include 'phpFunctions/functions.php';
+ $dbConnect= mysqlConection();
+ function goBack()
+ {
+  echo "<form method='post' action='php.php'>  
+  <button type='submit'>Go back</button></form>";
+  
+ }
 
+ 
  if($dbConnect){
 
       
-    function cookieCheck($sessionName,$inputName){
-        if(isset ($_COOKIE["GoingToDBSelection"])){
-            if($_COOKIE["GoingToDBSelection"]==1){
-                $varName=$sessionName;
-                $_COOKIE["GoingToDBSelection"]=0;
-             
-            }}else{
-             $varName=$inputName;
-            
-            }
-        return $varName;
-        }
+    
         
         if(isset($_POST["db_Name"])){
             $database_name =cookieCheck($_POST["db_Name"],$_POST["db_Name"]);
@@ -50,7 +43,7 @@
         }}else{
             echo "<header><p>selection failed</p></header>";}}}
  dbSelection();
-
+ goBack();
 ?>
 <!DOCTYPE html>
 <html>

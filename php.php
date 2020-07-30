@@ -1,27 +1,27 @@
 <?php 
-function connectingDB(){
-  $hostname="localhost";
-  $username="root";
-  $password="";
-  $dbConnect= mysqli_connect($hostname,$username,$password);
-  return $dbConnect;
-}
-connectingDB();
+ include 'phpFunctions/functions.php';
+ 
 
-$dbConnect=connectingDB();
-$database_name;
-$dbShow="SHOW DATABASES;";
-$db_list = mysqli_query($dbConnect, "SHOW DATABASES");
+ function dbShow(){
+  $dbConnect= mysqlConection();
+ 
+ $dbShow="SHOW DATABASES;";
+ $db_list = mysqli_query($dbConnect, "SHOW DATABASES");
 
-echo "</br>"."db list"."</br>"."</br>";
-while ($row = mysqli_fetch_array($db_list)) {
+ echo "</br>"."db list"."</br>"."</br>";
+ while ($row = mysqli_fetch_array($db_list)) {
  echo $row[0]."</br>";
-}  
-if($dbConnect){
+ }  
+ if($dbConnect){
     echo "</br>"."connected"."</br>"."</br>";
 
-}
-  ?>
+ }
+ 
+ 
+  
+  }
+  dbShow();
+?>
   <!DOCTYPE html>
   <html lang="pl">
 <head>

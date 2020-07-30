@@ -1,25 +1,24 @@
 <?php
 
 session_start();
+include 'phpFunctions/functions.php';
 function goBack()
 {
   echo "<form method='post' action='tableSelect.php'>  
   <button type='submit'>Go back</button></form>";
-  setcookie("goingBack","1",time()+60);
+  setcookie("goingBack","1",time()+60*60);
 }
 function fullTable()
 {
-$hostname="localhost";
-$username="root";
-$password="";
-$dbConnect= mysqli_connect($hostname,$username,$password);
+
+  $dbConnect= mysqlConection();
 
 
-$database_name=$_SESSION["db_Name"];
-$tableName=$_SESSION["tableName"];
+ $database_name=$_SESSION["db_Name"];
+ $tableName=$_SESSION["tableName"];
 
-mysqli_query($dbConnect,'SELECT * FROM'.$tableName);
-if($dbConnect){
+ mysqli_query($dbConnect,'SELECT * FROM'.$tableName);
+ if($dbConnect){
     $dbUsage="USE ".$database_name;
     if(mysqli_query($dbConnect,$dbUsage)){
         echo "<header><p>selection succefull</p></header>";
@@ -30,14 +29,14 @@ if($dbConnect){
         echo "<main><table><thead>";
 
         $colSel = "DESC ".$tableName;
-$colList = mysqli_query($dbConnect,$colSel);
-while($row = mysqli_fetch_array($colList)){
-    echo "<th> ".$row[0]."</th> ";
+        $colList = mysqli_query($dbConnect,$colSel);
+        while($row = mysqli_fetch_array($colList)){
+        echo "<th> ".$row[0]."</th> ";
   
 
    
-}
-echo "</thead><tbody>";
+ }
+ echo "</thead><tbody>";
         $selectionCommand='SELECT * FROM '.$tableName.';';
        $selection = mysqli_query($dbConnect,$selectionCommand);
 
@@ -59,17 +58,15 @@ echo "</thead><tbody>";
   echo "</table>";
     }}}
     function specyficData(){
-      $hostname="localhost";
-$username="root";
-$password="";
-$dbConnect= mysqli_connect($hostname,$username,$password);
-$database_name=$_SESSION["db_Name"];
-$tableName=$_SESSION["tableName"];
-$specfied=$_POST["columnName"];
-$specfiedTableCommand='SELECT '.$specfied.' FROM '.$tableName.';';
-echo $specfiedTableCommand;
+      
+  $dbConnect= mysqlConection();
+ $database_name=$_SESSION["db_Name"];
+ $tableName=$_SESSION["tableName"];
+ $specfied=$_POST["columnName"];
+ $specfiedTableCommand='SELECT '.$specfied.' FROM '.$tableName.';';
+ echo $specfiedTableCommand;
 
-if($dbConnect){
+ if($dbConnect){
     $dbUsage="USE ".$database_name;
     if(mysqli_query($dbConnect,$dbUsage)){
         echo "<header><p>selection succefull</p></header>";
@@ -86,14 +83,14 @@ if($dbConnect){
 
 
     }
-    if(!$_POST['columnName']){
+  if(!$_POST['columnName']){
       fullTable();
     }else if($_POST['columnName']){
       specyficData();
     }else{
       echo "both areas can't be empty";
-    }
-    goBack();
+  }
+  goBack();
 ?>
 <!DOCTYPE html>
 <html lang="pl">
