@@ -1,39 +1,56 @@
 <?php 
-session_start();
-session_regenerate_id();
-$hostname="localhost";
-$username="root";
-$password="";
-$database_name=$_POST["db_Name"];
-$dbConnect= mysqli_connect($hostname,$username,$password);
-$_SESSION["db_Name"]=$database_name;
+ function dbSelection(){
+ session_start();
+ session_regenerate_id();
+ $hostname="localhost";
+ $username="root";
+ $password="";
+//  $database_name=$_POST["db_Name"];
+ $dbConnect= mysqli_connect($hostname,$username,$password);
 
-if($dbConnect){
+
+ if($dbConnect){
 
       
-    
-    
+    function cookieCheck($sessionName,$inputName){
+        if(isset ($_COOKIE["GoingToDBSelection"])){
+            if($_COOKIE["GoingToDBSelection"]==1){
+                $varName=$sessionName;
+                $_COOKIE["GoingToDBSelection"]=0;
+             
+            }}else{
+             $varName=$inputName;
+            
+            }
+        return $varName;
+        }
+        
+        if(isset($_POST["db_Name"])){
+            $database_name =cookieCheck($_POST["db_Name"],$_POST["db_Name"]);
+             $_SESSION["db_Name"]=$database_name;
+        }else{
+            $database_name=cookieCheck($_SESSION['db_Name'],$_SESSION['db_Name']);
+            
+        }
+
     $dbUsage="USE ".$database_name;
     
     if(mysqli_query($dbConnect,$dbUsage)){
         echo "<header><p>selection succefull</p></header>";
-echo "<main><section>";
-echo "<header>Table list</header>";
-echo "<main>";
-$ShowTables = "SHOW TABLES";
+        echo "<main><section>";
+        echo "<header>Table list</header>";
+        echo "<main>";
+        $ShowTables = "SHOW TABLES";
         $Tables = mysqli_query($dbConnect,$ShowTables);
         
       
         
         while ($row = mysqli_fetch_row($Tables)) {
             echo "<p> $row[0]</p>";
-        }
+        }}else{
+            echo "<header><p>selection failed</p></header>";}}}
+ dbSelection();
 
-}else{
-    echo "<header><p>selection failed</p></header>";
-
-}
-}
 ?>
 <!DOCTYPE html>
 <html>

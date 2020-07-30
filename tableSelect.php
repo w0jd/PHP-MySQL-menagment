@@ -1,6 +1,13 @@
 <?php
-session_start();
-function tableCreation(){
+
+ session_start();
+
+ function goBack(){
+    echo "<form method='post' action='dbSelection.php'>  
+    <button type='submit'>Go back</button></form>";
+    setcookie("GoingToDBSelection","1",time()+30);}
+
+ function tableCreation(){
     $hostname="localhost";
     $username="root";
     $password="";
@@ -8,33 +15,36 @@ function tableCreation(){
     $database_name=$_SESSION["db_Name"];
     $tableName=$_POST["TabCreate"];
     $creationCommand="Create TABLE IF NOT EXIST ".$tableName.";";
-    $creationQuery=mysqli_query($dbConnect,$creationCommand);
-
-
-
-}
-function cookieCheck(){
+    $creationQuery=mysqli_query($dbConnect,$creationCommand);}
+ function cookieCheck($sessionName,$inputName){
     if(isset ($_COOKIE["goingBack"])){
         if($_COOKIE["goingBack"]==1){
-            $tableName=$_SESSION['tableName'];
+            $varName=$sessionName;
             $_COOKIE["goingBack"]=0;
+         
         }}else{
-         $tableName=$_POST["TabSel"];
+         $varName=$inputName;
+        
         }
-    return $tableName;
+    return $varName;
     }
-function tableSelect()
-{
+ function tableSelect(){
 
- $hostname="localhost";
- $username="root";
- $password="";
- $dbConnect= mysqli_connect($hostname,$username,$password);
- $database_name=$_SESSION["db_Name"];
- $tableName =cookieCheck();
- $colNum=0;
- $i=-1;
- if($dbConnect){
+  $hostname="localhost";
+  $username="root";
+  $password="";
+  $dbConnect= mysqli_connect($hostname,$username,$password);
+  $database_name=$_SESSION["db_Name"];
+                      if(isset($_POST["TabSel"])){
+                            $tableName =cookieCheck($_POST["TabSel"],$_POST["TabSel"]);
+                        }else{
+                            $tableName=cookieCheck($_SESSION['tableName'],$_SESSION['tableName']);
+                            
+                        }
+                          
+    $colNum=0;
+    $i=-1;
+    if($dbConnect){
         $dbUsage="USE ".$database_name;
         if(mysqli_query($dbConnect,$dbUsage)){
              echo "<header><p>selection succefull</p></header>";
@@ -42,6 +52,7 @@ function tableSelect()
              echo "<header>Columns list</header>";
              echo "<main>";
              $colSel = "DESC ".$tableName;
+             echo $tableName;
              $colList = mysqli_query($dbConnect,$colSel);
              while($row = mysqli_fetch_array($colList)){
                      echo $row[0]."<br>";
@@ -54,17 +65,26 @@ function tableSelect()
     
     }
   $_SESSION["tableName"]=$tableName;}
-if(isset($_POST["TabSel"])||isset($_POST["TabCreate"])){
+ 
+ 
+ 
+ 
+  if(isset($_POST["TabSel"])||isset($_POST["TabCreate"])){
     if($_POST["TabSel"]){
         tableSelect();
 
             }else if($_POST["TabCreate"]){
                 tableCreation();
-  
+                goBack();
                     }else{
                         echo "you have to fill up one of the areas";}
-                            }else{
-                                tableSelect();}
+                        goBack();   
+                        }else{
+                                tableSelect();
+                                goBack();
+                            
+                            }
+ 
 ?>
 <!DOCTYPE html>
 <html>
