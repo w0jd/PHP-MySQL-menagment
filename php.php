@@ -1,6 +1,6 @@
 <?php 
  include 'phpFunctions/functions.php';
- 
+ include 'phpVariables/variables.php';
 
  function dbShow(){
   $dbConnect= sessionCheck();

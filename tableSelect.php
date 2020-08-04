@@ -2,6 +2,7 @@
 
  session_start();
  include 'phpFunctions/functions.php';
+ include 'phpVariables/variables.php';
  function goBack(){
     echo "<form method='post' action='dbSelection.php'>  
     <button type='submit'>Go back</button></form>";

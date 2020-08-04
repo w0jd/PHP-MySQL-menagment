@@ -1,9 +1,11 @@
 <?php  
  session_start();
  session_regenerate_id();
+ include 'phpVariables/variables.php'; 
  function dbSelection(){
 
  include 'phpFunctions/functions.php';
+
  $dbConnect= sessionCheck();
  function goBack()
  {
@@ -27,17 +29,15 @@
         }
 
     $dbUsage="USE ".$database_name;
-    
+  
     if(mysqli_query($dbConnect,$dbUsage)){
         echo "<header><p>selection succefull</p></header>";
         echo "<main><section>";
         echo "<header>Table list</header>";
         echo "<main>";
         $ShowTables = "SHOW TABLES";
+        
         $Tables = mysqli_query($dbConnect,$ShowTables);
-        
-      
-        
         while ($row = mysqli_fetch_row($Tables)) {
             echo "<p> $row[0]</p>";
         }}else{
