@@ -32,11 +32,8 @@ function fullTable()
         $colSel = "DESC ".$tableName;
         $colList = mysqli_query($dbConnect,$colSel);
         while($row = mysqli_fetch_array($colList)){
-        echo "<th> ".$row[0]."</th> ";
-  
-
-   
- }
+         echo "<th> ".$row[0]."</th> ";
+        }
         echo "</thead><tbody>";
         $selectionCommand='SELECT * FROM '.$tableName.';';
         $selection = mysqli_query($dbConnect,$selectionCommand);
