@@ -26,7 +26,7 @@
      $tableName=cookieCheck($_SESSION['tableName'],$_SESSION['tableName']);}
                           
      $colNum=0;
-     $i=-1;
+     $i=0;
      if($dbConnect){
         $dbUsage="USE ".$database_name;
         if(mysqli_query($dbConnect,$dbUsage)){
@@ -39,8 +39,9 @@
              $colList = mysqli_query($dbConnect,$colSel);
              while($row = mysqli_fetch_array($colList)){
                      echo $row[0]."<br>";
-                     $i++;
                      $_SESSION["colNum"]=$i;
+                     $i++;
+                     
    
                  }
 

@@ -1,5 +1,6 @@
 <?php 
 function sessionCheck(){
+   
     if(isset($_SESSION['hostname'])){
         $hostname=$_SESSION['hostname'];
         $username=$_SESSION['username'];
@@ -8,14 +9,14 @@ function sessionCheck(){
         $dbConnect=  mysqlConection($hostname,$username,$password);
         return  $dbConnect;
     }else{
-        session_start();
-        session_regenerate_id();
+      
         $hostname=$_POST['hostname'];
         $username=$_POST['username'];
         $password=$_POST['password'];
         $_SESSION['hostname']=$hostname;
-       $_SESSION['username']= $username;
-       $_SESSION['password']=$password;
+        $_SESSION['username']= $username;
+        $_SESSION['password']=$password;
+        
         $dbConnect=  mysqlConection($hostname,$username,$password);
         return  $dbConnect;
     }
