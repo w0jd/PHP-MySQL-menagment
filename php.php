@@ -1,17 +1,19 @@
 <?php 
  include 'phpFunctions/functions.php';
  include 'phpVariables/variables.php';
-
+ session_start();
+ session_regenerate_id();
  function dbShow(){
   $dbConnect= sessionCheck();
  
  $dbShow="SHOW DATABASES;";
  $db_list = mysqli_query($dbConnect, "SHOW DATABASES");
 
- echo "</br>"."db list"."</br>"."</br>";
+ echo "</br>"."<form action='dbSelection.php' method='POST'> db list"."</br>"."</br><select name='db_Name'>";
  while ($row = mysqli_fetch_array($db_list)) {
- echo $row[0]."</br>";
- }  
+ echo "<option value='$row[0]'>$row[0]</option>";
+ } 
+ echo "</select> <button type='submit'> Select</button></form>";
  if($dbConnect){
     echo "</br>"."connected"."</br>"."</br>";
 
@@ -31,10 +33,9 @@
 </head>
 <body>
   <main>
-      <form action="dbSelection.php" method="POST">
-          <label for="dbName">Please type database name</label>
-          <input  name="db_Name" id="dbName">
-            <button type="submit"> Select</button>
+     
+         
+           
         </main>
 
     </body>

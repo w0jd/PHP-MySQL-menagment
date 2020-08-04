@@ -10,7 +10,7 @@
  function goBack()
  {
   echo "<form method='post' action='php.php'>  
-  <button type='submit'>Go back</button></form>";
+  <input type='submit' value='go back' name='goBack'></form>";
   
  }
 
@@ -21,19 +21,26 @@
     
        
     $dbUsage="USE ".database_name();
-  
+ 
     if(mysqli_query($dbConnect,$dbUsage)){
         echo "<header><p>selection succefull</p></header>";
         echo "<main><section>";
         echo "<header>Table list</header>";
-        echo "<main>";
+        echo "<main><form action='tableSelect.php' method='POST'><section>
+        <label for='TabSel'>choose name of table you want select</label> <select id='TabSel' name='TabSel'>";
         $ShowTables = "SHOW TABLES";
         
         $Tables = mysqli_query($dbConnect,$ShowTables);
+        if(! mysqli_fetch_row($Tables)){
+            echo "db empty";
+        }
+        
         while ($row = mysqli_fetch_row($Tables)) {
-            echo "<p> $row[0]</p>";
-        }}else{
-            echo "<header><p>selection failed</p></header>";}}}
+            echo "<option value='$row[0]'>$row[0]</option>";
+            
+        }echo "</select></section><input type='submit' value='select'></form>";}else{
+            echo "<header><p>selection failed</p></header>";} 
+    }}
  dbSelection();
  goBack();
 ?>
@@ -42,19 +49,16 @@
     <body>
         <form action="dbDel.php" method="POST"  >
         <section>
-            <button value="delete" name="delDB" id="delDB">Delete data base</button>
+            <input type="submit" value="delete" name="delDB" id="delDB">
         </section>
         </form>
-        <form action="tableSelect.php" method="POST"  >
-        <section>
-           <label for="TabSel">Type name of table you want select</label> <input id="TabSel" name="TabSel">
-            <button value="tableSelect" name="tableSelect" id="tableSelect" type="submit">Select one of tables</button>
-        </section>
-        </form>
+        
+           
+    
         <form action="tableCreate.php" method="post">
         <section>
            <label for="TabCreate">Type name of table you want create</label> <input name="TabCreate" id="TabCreate">
-            <button value="tableCreate" name="tableCreate" id="tableCreate" type="submit">create <table></table></button>
+            <input name="tableCreate" id="tableCreate" value='create' type="submit"> 
         </section>
         </form>
     </body>
