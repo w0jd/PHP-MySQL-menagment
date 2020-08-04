@@ -37,13 +37,16 @@
              $colSel = "DESC ".$tableName;
              
              $colList = mysqli_query($dbConnect,$colSel);
+             $_SESSION['colList']=$colSel;
+             echo "<form method='POST' action='fullTable.php' ><section>";
              while($row = mysqli_fetch_array($colList)){
-                     echo $row[0]."<br>";
+                     echo "<input type='checkbox' name='$row[0]'>$row[0]"."<br>";
                      $_SESSION["colNum"]=$i;
                      $i++;
                      
    
                  }
+                 echo "</section><button type='submit' >Send</button></form>";
 
             }
     
@@ -80,9 +83,9 @@
                     <label for="fullData">Show all data from selecteted table</label>
             </section>
             <section>
-                    <label for="columnName">Please type a name of the coulmn you want to select </label>
-                    <input type="text" name="columnName" id="columnName">
-                    </br><button type="submit" >Send</button>
+                    <!-- <label for="columnName">Please type a name of the coulmn you want to select </label> -->
+                    <!-- <input type="text" name="columnName" id="columnName"> -->
+                    <!-- </br><button type="submit" >Send</button> -->
                 </form>
                 
             </section>
