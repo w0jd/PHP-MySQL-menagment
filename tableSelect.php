@@ -35,7 +35,7 @@
              echo "<header>Columns list</header>";
              echo "<main>";
              $colSel = "DESC ".$tableName;
-             echo $tableName;
+             
              $colList = mysqli_query($dbConnect,$colSel);
              while($row = mysqli_fetch_array($colList)){
                      echo $row[0]."<br>";

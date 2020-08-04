@@ -19,16 +19,8 @@
 
       
     
-        
-        if(isset($_POST["db_Name"])){
-            $database_name =cookieCheck($_POST["db_Name"],$_POST["db_Name"]);
-             $_SESSION["db_Name"]=$database_name;
-        }else{
-            $database_name=cookieCheck($_SESSION['db_Name'],$_SESSION['db_Name']);
-            
-        }
-
-    $dbUsage="USE ".$database_name;
+       
+    $dbUsage="USE ".database_name();
   
     if(mysqli_query($dbConnect,$dbUsage)){
         echo "<header><p>selection succefull</p></header>";

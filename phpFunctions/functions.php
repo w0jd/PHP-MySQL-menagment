@@ -37,4 +37,14 @@ function cookieCheck($sessionName,$inputName){
         }
     return $varName;
 }
+function database_name() {
+    if(isset($_POST["db_Name"])){
+        $database_name =cookieCheck($_POST["db_Name"],$_POST["db_Name"]);
+         $_SESSION["db_Name"]=$database_name;
+    }else{
+        $database_name=cookieCheck($_SESSION['db_Name'],$_SESSION['db_Name']);
+        
+    }
+    return $database_name;
+ }
 ?>
