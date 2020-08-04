@@ -2,6 +2,7 @@
 
 session_start();
 include 'phpFunctions/functions.php';
+include 'phpVariables/variables.php';
 function goBack()
 {
   echo "<form method='post' action='tableSelect.php'>  
@@ -17,7 +18,7 @@ function fullTable()
  $database_name=$_SESSION["db_Name"];
  $tableName=$_SESSION["tableName"];
 
- mysqli_query($dbConnect,'SELECT * FROM'.$tableName);
+ 
  if($dbConnect){
     $dbUsage="USE ".$database_name;
     if(mysqli_query($dbConnect,$dbUsage)){
