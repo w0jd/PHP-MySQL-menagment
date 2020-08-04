@@ -1,8 +1,6 @@
 <?php 
-function mysqlConection(){
- $hostname="localhost";
- $username="root";
- $password="";
+function mysqlConection($hostname,$username,$password){
+
  $dbConnect= mysqli_connect($hostname,$username,$password);
  return $dbConnect;
 }
