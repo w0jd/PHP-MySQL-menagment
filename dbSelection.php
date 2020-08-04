@@ -4,7 +4,7 @@
  function dbSelection(){
 
  include 'phpFunctions/functions.php';
- $dbConnect= mysqlConection();
+ $dbConnect= sessionCheck();
  function goBack()
  {
   echo "<form method='post' action='php.php'>  

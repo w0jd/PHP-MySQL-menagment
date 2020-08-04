@@ -11,7 +11,7 @@ function goBack()
 function fullTable()
 {
 
-  $dbConnect= mysqlConection();
+  $dbConnect= sessionCheck();
 
 
  $database_name=$_SESSION["db_Name"];
@@ -36,18 +36,18 @@ function fullTable()
 
    
  }
- echo "</thead><tbody>";
+        echo "</thead><tbody>";
         $selectionCommand='SELECT * FROM '.$tableName.';';
-       $selection = mysqli_query($dbConnect,$selectionCommand);
+        $selection = mysqli_query($dbConnect,$selectionCommand);
 
-       while($row= mysqli_fetch_array($selection)){
-      $colNum=$_SESSION["colNum"];
+        while($row= mysqli_fetch_array($selection)){
+         $colNum=$_SESSION["colNum"];
 
-      for($t=0;$t<= $colNum;$t++ ){
-        if($t==0){
-          echo "<tr>";}
-          echo "<td>".$row[$t]."</td>";
-         if($t==$colNum){
+         for($t=0;$t<= $colNum;$t++ ){
+            if($t==0){
+            echo "<tr>";}
+           echo "<td>".$row[$t]."</td>";
+            if($t==$colNum){
            echo "</tr>";
          }
          
@@ -59,22 +59,22 @@ function fullTable()
     }}}
     function specyficData(){
       
-  $dbConnect= mysqlConection();
- $database_name=$_SESSION["db_Name"];
- $tableName=$_SESSION["tableName"];
- $specfied=$_POST["columnName"];
- $specfiedTableCommand='SELECT '.$specfied.' FROM '.$tableName.';';
- echo $specfiedTableCommand;
+      $dbConnect= sessionCheck();
+      $database_name=$_SESSION["db_Name"];
+      $tableName=$_SESSION["tableName"];
+      $specfied=$_POST["columnName"];
+      $specfiedTableCommand='SELECT '.$specfied.' FROM '.$tableName.';';
+      echo $specfiedTableCommand;
 
- if($dbConnect){
-    $dbUsage="USE ".$database_name;
-    if(mysqli_query($dbConnect,$dbUsage)){
+      if($dbConnect){
+        $dbUsage="USE ".$database_name;
+        if(mysqli_query($dbConnect,$dbUsage)){
         echo "<header><p>selection succefull</p></header>";
         echo "<main><section>";
     
         echo "<header> list of ".$specfied."</header>";
         $specfiedTable=mysqli_query($dbConnect,$specfiedTableCommand);
-    while($row=mysqli_fetch_array($specfiedTable)){
+        while($row=mysqli_fetch_array($specfiedTable)){
         echo $row[0]."</br>";
     }
     }}

@@ -9,7 +9,7 @@
 
  function tableCreation(){
     include 'phpFunctions/functions.php';
-    $dbConnect= mysqlConection();
+    $dbConnect= sessionCheck();
     $database_name=$_SESSION["db_Name"];
     $tableName=$_POST["TabCreate"];
     $creationCommand="Create TABLE IF NOT EXIST ".$tableName.";";
@@ -17,7 +17,7 @@
  function tableSelect(){
 
  
-    $dbConnect= mysqlConection();
+    $dbConnect= sessionCheck();
   $database_name=$_SESSION["db_Name"];
     if(isset($_POST["TabSel"])){
      $tableName =cookieCheck($_POST["TabSel"],$_POST["TabSel"]);
