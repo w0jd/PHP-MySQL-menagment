@@ -3,7 +3,7 @@
  
 
  function dbShow(){
-  $dbConnect= mysqlConection();
+  $dbConnect= sessionCheck();
  
  $dbShow="SHOW DATABASES;";
  $db_list = mysqli_query($dbConnect, "SHOW DATABASES");
