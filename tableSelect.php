@@ -18,15 +18,15 @@
 
  
     $dbConnect= sessionCheck();
-  $database_name=$_SESSION["db_Name"];
+    $database_name=$_SESSION["db_Name"];
     if(isset($_POST["TabSel"])){
      $tableName =cookieCheck($_POST["TabSel"],$_POST["TabSel"]);
      }else{
      $tableName=cookieCheck($_SESSION['tableName'],$_SESSION['tableName']);}
                           
-    $colNum=0;
-    $i=-1;
-    if($dbConnect){
+     $colNum=0;
+     $i=-1;
+     if($dbConnect){
         $dbUsage="USE ".$database_name;
         if(mysqli_query($dbConnect,$dbUsage)){
              echo "<header><p>selection succefull</p></header>";
