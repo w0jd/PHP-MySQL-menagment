@@ -53,7 +53,7 @@ function fullTable()
 
     
   }
-  echo "</table>";
+  echo "</tbody></table></main></section></main>";
     }}}
     function specyficData(){
       $selColNum=0;
@@ -76,27 +76,27 @@ function fullTable()
         $specfied="";
           
         $colList = mysqli_query($dbConnect,$colList );
-      
-        while($row = mysqli_fetch_array($colList)){
-          $rowName=  $row[0];
-          if( isset($_POST[ $rowName])){
-           if($selColNum<=0){
+        echo "<main><section><table><thead><tr>";
+        while($row = mysqli_fetch_array($colList)){ // loop to check which cols were selected
+          $rowName=  $row[0]; // asing value string of row to variable
+          if( isset($_POST[ $rowName])){ //checking what was selected
+           
+            echo "<th>".$row[0]."</th>";
+            if($selColNum<=0){ //if it's first value don't write ","
             $specfied=$specfied." ".$rowName." ";}
               else{
-              $specfied=$specfied.",".$rowName." ";
+              $specfied=$specfied.",".$rowName." "; //if it's not first value then wirete "," before it
             }
             $_SESSION['specyfied']=$specfied;
             $selColNum++;
-           
           }
-         
-          
         } 
+        echo "</tr></thead><tbody>";
         $selColNum--;
         $specfied=$_SESSION['specyfied'];
         $specfiedTableCommand='SELECT '.$specfied.' FROM '.$tableName.';';
-        echo $specfiedTableCommand;
-        echo "<header> list of ".$specfied."</header><main><table><tbody>";
+       
+      
         $specfiedTable=mysqli_query($dbConnect,$specfiedTableCommand);
         while($row=mysqli_fetch_array($specfiedTable)){
          for($x=0; $x<=$selColNum;$x++){
@@ -104,7 +104,7 @@ function fullTable()
           echo "<td>".$row[$x]."</td>";
           if($x==$selColNum){echo '</tr>';}
         }}
-        echo '</tbody></table></main>';
+        echo '</tbody></table></section></main>';
     }}
 
 
