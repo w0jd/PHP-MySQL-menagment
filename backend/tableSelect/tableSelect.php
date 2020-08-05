@@ -1,15 +1,15 @@
 <?php
 
  session_start();
- include 'phpFunctions/functions.php';
- include 'phpVariables/variables.php';
+ include '../phpFunctions/functions.php';
+ include '../phpVariables/variables.php';
  function goBack(){
-    echo "<form method='post' action='dbSelection.php'>  
+    echo "<form method='post' action='../dbSelection/dbSelection.php'>  
     <button type='submit'>Go back</button></form>";
     setcookie("goingBack","1",time()+60*60);}
 
  function tableCreation(){
-    include 'phpFunctions/functions.php';
+    include '../phpFunctions/functions.php';
     $dbConnect= sessionCheck();
     $database_name=$_SESSION["db_Name"];
     $tableName=$_POST["TabCreate"];
@@ -38,7 +38,7 @@
              
              $colList = mysqli_query($dbConnect,$colSel);
              $_SESSION['colList']=$colSel;
-             echo "<form method='POST' action='fullTable.php' ><section>";
+             echo "<form method='POST' action='../fullTable/fullTable.php' ><section>";
              while($row = mysqli_fetch_array($colList)){
                      echo "<input type='checkbox' name='$row[0]'>$row[0]"."<br>";
                      $_SESSION["colNum"]=$i;
@@ -78,7 +78,7 @@
     <body>
         <main>
             <section>
-                <form action="fullTable.php" method="POST">
+                <form action="../fullTable/fullTable.php" method="POST">
                     <input type="checkbox" name="fullData" id="fullTData">
                     <label for="fullData">Show all data from selecteted table</label>
             </section>

@@ -1,15 +1,15 @@
 <?php  
  session_start();
  session_regenerate_id();
- include 'phpVariables/variables.php'; 
+ include '../phpVariables/variables.php'; 
  function dbSelection(){
 
- include 'phpFunctions/functions.php';
+ include '../phpFunctions/functions.php';
 
  $dbConnect= sessionCheck();
  function goBack()
  {
-  echo "<form method='post' action='php.php'>  
+  echo "<form method='post' action='../main/php.php'>  
   <input type='submit' value='go back' name='goBack'></form>";
   
  }
@@ -26,7 +26,7 @@
         echo "<header><p>selection succefull</p></header>";
         echo "<main><section>";
         echo "<header>Table list</header>";
-        echo "<main><form action='tableSelect.php' method='POST'><section>
+        echo "<main><form action='../tableSelect/tableSelect.php' method='POST'><section>
         <label for='TabSel'>choose name of table you want select</label> <select id='TabSel' name='TabSel'>";
         $ShowTables = "SHOW TABLES";
         
@@ -55,7 +55,7 @@
         
            
     
-        <form action="tableCreate.php" method="post">
+        <form action="../tableCreate/tableCreate.php" method="post">
         <section>
            <label for="TabCreate">Type name of table you want create</label> <input name="TabCreate" id="TabCreate">
             <input name="tableCreate" id="tableCreate" value='create' type="submit"> 

@@ -1,11 +1,11 @@
 <?php
 
 session_start();
-include 'phpFunctions/functions.php';
-include 'phpVariables/variables.php';
+include '../phpFunctions/functions.php';
+include '../phpVariables/variables.php';
 function goBack()
 {
-  echo "<form method='post' action='tableSelect.php'>  
+  echo "<form method='post' action='../tableSelect/tableSelect.php'>  
   <button type='submit'>Go back</button></form>";
   setcookie("goingBack","1",time()+60*60);
 }
@@ -126,7 +126,7 @@ function fullTable()
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="/frontend/css/main.css">
+  <link rel="stylesheet" href="../../frontend/css/main.css">
 </head>
 <body>
   

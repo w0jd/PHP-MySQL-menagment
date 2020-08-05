@@ -1,6 +1,6 @@
 <?php 
- include 'phpFunctions/functions.php';
- include 'phpVariables/variables.php';
+ include '../phpFunctions/functions.php';
+ include '../phpVariables/variables.php';
  session_start();
  session_regenerate_id();
  function dbShow(){
@@ -9,7 +9,7 @@
  $dbShow="SHOW DATABASES;";
  $db_list = mysqli_query($dbConnect, "SHOW DATABASES");
 
- echo "</br>"."<form action='dbSelection.php' method='POST'> db list"."</br>"."</br><select name='db_Name'>";
+ echo "</br>"."<form action='../dbSelection/dbSelection.php' method='POST'> db list"."</br>"."</br><select name='db_Name'>";
  while ($row = mysqli_fetch_array($db_list)) {
  echo "<option value='$row[0]'>$row[0]</option>";
  } 
