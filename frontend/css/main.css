@@ -1,4 +1,14 @@
 body {
   background: aliceblue;
 }
+
+.main_form {
+  border: solid;
+  border-width: 1px;
+  background: #C0D59A;
+}
+
+.main_form_section {
+  padding: 1em;
+}
 /*# sourceMappingURL=main.css.map */

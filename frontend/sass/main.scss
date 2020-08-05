@@ -1,4 +1,25 @@
 $bodycolor: #888888;
+
+$main-colors:(
+  "background-color": aliceblue,
+  "second-color": #C0D59A,
+  "third-color": #B57F50,
+  "text-color": black
+);
 body{
-    background: $bodycolor;
+    background: map-get($main-colors , background-color );
+}
+$sizes:(
+    "v-small": 1px,
+    "small": 5px,
+    "medium": 1em,
+    "lagrge": 3em
+);
+.main_form{
+    border: solid;
+    border-width: map-get($sizes , v-small );
+    background: map-get($main-colors , second-color );
+    &_section{
+        padding: map-get($sizes , medium );
+    }
 }
