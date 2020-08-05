@@ -1,3 +1,4 @@
+
 <?php 
  include '../phpFunctions/functions.php';
  include '../phpVariables/variables.php';
@@ -28,7 +29,7 @@
   <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    
+    <link rel="stylesheet" href="frontend/css/main.css">
     <title>Document</title>
 </head>
 <body>

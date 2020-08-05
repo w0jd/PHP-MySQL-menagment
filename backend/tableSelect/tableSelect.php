@@ -76,6 +76,9 @@
 <!DOCTYPE html>
 <html>
     <body>
+        <header>
+            <link rel="stylesheet" href="../../frontend/css/main.css">
+        </header>
         <main>
             <section>
                 <form action="../fullTable/fullTable.php" method="POST">
