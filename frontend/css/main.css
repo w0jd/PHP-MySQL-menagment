@@ -2,13 +2,19 @@ body {
   background: aliceblue;
 }
 
-.main_form {
+.main_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.main_container .main_form {
   border: solid;
   border-width: 1px;
   background: #C0D59A;
 }
 
-.main_form_section {
+.main_container .main_form_section {
   padding: 1em;
 }
 /*# sourceMappingURL=main.css.map */

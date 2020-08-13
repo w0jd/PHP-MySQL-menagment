@@ -6,6 +6,15 @@ $main-colors:(
   "third-color": #B57F50,
   "text-color": black
 );
+$flex-position:(
+    "fstart":flex-start,
+    "fend":flex-end,
+    "ctr":center,
+    "sbetween":space-between,
+    "saround":space-around,
+    "sevenly":space-evenly
+);
+
 body{
     background: map-get($main-colors , background-color );
 }
@@ -13,8 +22,11 @@ $sizes:(
     "v-small": 1px,
     "small": 5px,
     "medium": 1em,
-    "lagrge": 3em
+    "large": 3em
 );
+.main_container{
+    display: flex;
+
 .main_form{
     border: solid;
     border-width: map-get($sizes , v-small );
@@ -22,4 +34,4 @@ $sizes:(
     &_section{
         padding: map-get($sizes , medium );
     }
-}
+}}
