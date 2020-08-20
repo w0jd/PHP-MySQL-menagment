@@ -1,8 +1,14 @@
+
 $main-colors:(
-  "background-color": aliceblue,
+  "background-color-light": aliceblue,
   "second-color": #C0D59A,
   "third-color": #B57F50,
+  "fourth-color": #2F323A,
+  "fivth-color": #7DBA84,
   "text-color": black
+);
+$fonts-family:(
+ "main":"Roboto mono"
 );
 $flex-position:(
     "fstart":flex-start,
@@ -15,6 +21,6 @@ $flex-position:(
 $sizes:(
     "v-small": 1px,
     "small": 5px,
-    "medium": 1em,
-    "large": 3em
+    "medium": 1rem,
+    "large": 3rem
 );

@@ -1,46 +1,82 @@
 @import './resets';
 @import './variables';
+@import './mixins';
+@mixin flex {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+   
+}
+@mixin mobile {
+    @media (max-width:840px) {
+        @content;
+    }
+}
+$background-color-light:#f0f8ff;
+@function colors($color-number){
+    @return map-get($main-colors, $color-number );
+}
+
+@function sizes($size){
+    @return map-get($sizes, $size);
+}
 
 body{
-    background: map-get($main-colors , background-color );
+    background: colors(background-color-light);
     display: grid;
     grid-template-rows: repeat(2, 1fr [row-start]);
+    font-family: Raleway, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-$sizes:(
-    "v-small": 1px,
-    "small": 5px,
-    "medium": 1em,
-    "large": 3em
-);
 
 .main_container{
-   display: grid;
-   grid-row-start: 1;
-   grid-row-end: 3;
+    @include grid(1,4,0,1);
+
    grid-template-columns: repeat(6, 1fr [col-start]);
    grid-template-rows: repeat(8, 1fr [row-start]);
+   @include mobile{
+      @include flex();
+   }
 }
  .main_form{
-   
+    box-shadow: 0 0 2vw colors( third-color ) ;
     border: solid;
-   grid-column-start: 3;
-   grid-column-end: 5;
-   grid-row-start: 3;
-   grid-row-end:7 ;
-   row-gap: 1em;
-    display: grid;
-  
-    border-width: map-get($sizes , v-small );
-    background: map-get($main-colors , third-color );
+    @include grid(3,7,3,5);
+ 
+ 
+    row-gap: sizes( medium );
+    
+    border-radius: sizes( medium );
+    border-width: sizes( v-small );
+    background:colors(third-color );
+    grid-template-columns:1vw 1fr 1fr 1fr 1vw;
+    
     #{&}_section{
-        padding: map-get($sizes , medium );
+        padding: sizes( medium );
         justify-content: map-get($flex-position , sbetween );
-        flex-basis: 100%;
+        grid-column-start: 2;
+        grid-column-end:5 ;
         display: flex;
+        @include mobile{
+            @include flex();
+         }
         input{
+            @include mobile{
+                @include flex();
+                flex-basis: 100%;
+             }
             &:hover{
-                box-shadow: 0 0 2vw map-get($main-colors , second-color ) ;
+                box-shadow: 0 0 2vw colors( second-color ) ;
             }
         }
     }
 }
+.log-in{
+    @include grid(4, 5, 2, 5);
+    margin: sizes(v-small)
+ 
+}
+
+// body:hover{
+//     @include theme($light-theme: false);
+// }

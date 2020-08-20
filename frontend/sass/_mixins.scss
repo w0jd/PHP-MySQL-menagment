@@ -1,0 +1,17 @@
+@mixin theme($light-theme: true) {
+    @if $light-theme {
+     
+        background: colors(background-color-light); 
+    }@else{
+        
+        background:darken($background-color-light,85%);
+        
+    }
+}
+@mixin grid($row-start,$row-end,$coulmn-start,$coulun-end) {
+    display: grid;
+    grid-column-start: $coulmn-start;
+    grid-column-end: $coulun-end;
+    grid-row-start: $row-start;
+    grid-row-end:$row-end ;
+}
