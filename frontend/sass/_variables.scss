@@ -1,0 +1,20 @@
+$main-colors:(
+  "background-color": aliceblue,
+  "second-color": #C0D59A,
+  "third-color": #B57F50,
+  "text-color": black
+);
+$flex-position:(
+    "fstart":flex-start,
+    "fend":flex-end,
+    "ctr":center,
+    "sbetween":space-between,
+    "saround":space-around,
+    "sevenly":space-evenly
+);
+$sizes:(
+    "v-small": 1px,
+    "small": 5px,
+    "medium": 1em,
+    "large": 3em
+);

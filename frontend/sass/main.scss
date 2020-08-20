@@ -1,22 +1,10 @@
-$bodycolor: #888888;
-
-$main-colors:(
-  "background-color": aliceblue,
-  "second-color": #C0D59A,
-  "third-color": #B57F50,
-  "text-color": black
-);
-$flex-position:(
-    "fstart":flex-start,
-    "fend":flex-end,
-    "ctr":center,
-    "sbetween":space-between,
-    "saround":space-around,
-    "sevenly":space-evenly
-);
+@import './resets';
+@import './variables';
 
 body{
     background: map-get($main-colors , background-color );
+    display: grid;
+    grid-template-rows: repeat(2, 1fr [row-start]);
 }
 $sizes:(
     "v-small": 1px,
@@ -24,14 +12,35 @@ $sizes:(
     "medium": 1em,
     "large": 3em
 );
-.main_container{
-    display: flex;
 
-.main_form{
+.main_container{
+   display: grid;
+   grid-row-start: 1;
+   grid-row-end: 3;
+   grid-template-columns: repeat(6, 1fr [col-start]);
+   grid-template-rows: repeat(8, 1fr [row-start]);
+}
+ .main_form{
+   
     border: solid;
+   grid-column-start: 3;
+   grid-column-end: 5;
+   grid-row-start: 3;
+   grid-row-end:7 ;
+   row-gap: 1em;
+    display: grid;
+  
     border-width: map-get($sizes , v-small );
-    background: map-get($main-colors , second-color );
-    &_section{
+    background: map-get($main-colors , third-color );
+    #{&}_section{
         padding: map-get($sizes , medium );
+        justify-content: map-get($flex-position , sbetween );
+        flex-basis: 100%;
+        display: flex;
+        input{
+            &:hover{
+                box-shadow: 0 0 2vw map-get($main-colors , second-color ) ;
+            }
+        }
     }
-}}
+}
