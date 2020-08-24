@@ -5,12 +5,16 @@
   padding: 0;
 }
 
+.html_full_height {
+  min-height: 100%;
+}
+
 body {
   background: aliceblue;
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: (1fr [row-start])[2];
-      grid-template-rows: repeat(2, 1fr [row-start]);
+  -ms-grid-rows: (1fr [row-start])[3];
+      grid-template-rows: repeat(3, 1fr [row-start]);
   font-family: Raleway, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -59,6 +63,8 @@ body {
       grid-row-start: 3;
   grid-row-end: 7;
   row-gap: 1rem;
+  -ms-grid-rows: (1fr)[2];
+      grid-template-rows: repeat(2, 1fr);
   border-radius: 1rem;
   border-width: 1px;
   background: #B57F50;

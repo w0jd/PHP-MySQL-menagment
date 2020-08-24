@@ -47,7 +47,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <link rel="stylesheet" href="../frontend/css/main.css">
+    <link rel="stylesheet" href="../../frontend/css/main.css">
     </head>
     <body>
         <form action="dbDel.php" method="POST"  >

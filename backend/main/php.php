@@ -1,5 +1,16 @@
 
+<!DOCTYPE html>
+  <html lang="pl" class="html_full_height">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../frontend/css/main.css">
+    <title>Document</title>
+</head>
+<body>
+
+
 <?php 
+
  include '../phpFunctions/functions.php';
  include '../phpVariables/variables.php';
  session_start();
@@ -10,34 +21,24 @@
  $dbShow="SHOW DATABASES;";
  $db_list = mysqli_query($dbConnect, "SHOW DATABASES");
 
- echo "</br>"."<form action='../dbSelection/dbSelection.php' method='POST'> db list"."</br>"."</br><select name='db_Name'>";
+ echo "<main class='main_container'><form class='main_form' action='../dbSelection/dbSelection.php' method='POST'><section class='main_form_section'> db list</section>"."<section class='main_form_section'><select name='db_Name'>";
+
+ 
  while ($row = mysqli_fetch_array($db_list)) {
  echo "<option value='$row[0]'>$row[0]</option>";
  } 
- echo "</select> <button type='submit'> Select</button></form>";
+ echo "</select></section>";
+ 
+ echo "<section class='main_form_section'> <button type='submit'> Select</button></section>";
+ 
  if($dbConnect){
-    echo "</br>"."connected"."</br>"."</br>";
-
- }
- 
- 
+  // echo "<section class='main_form_section'>Status: connected</section>";
+}
+ echo "</form></main>";
   
   }
   dbShow();
 ?>
-  <!DOCTYPE html>
-  <html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../frontend/css/main.css">
-    <title>Document</title>
-</head>
-<body>
-  <main>
-     
-         
-           
-        </main>
-
-    </body>
+  
+  </body>
   </html>
