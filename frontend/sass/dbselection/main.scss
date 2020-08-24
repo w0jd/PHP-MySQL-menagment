@@ -1,0 +1,17 @@
+.main_section{
+
+}
+.first_header{
+font-size: larger;
+justify-content: center !important;
+}
+body{
+    grid-template-rows:  1fr;
+}
+.goBack_form{
+    display: grid;
+    grid-row-start: 8;
+    grid-row-end:8 ;
+    grid-column-start: 3;
+    grid-column-end: 5;
+}

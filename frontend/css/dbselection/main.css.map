@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAGA,AAAA,aAAa,CAAA;EACb,SAAS,EAAE,MAAM;EACjB,eAAe,EAAE,iBAAiB;CACjC;;AACD,AAAA,IAAI,CAAA;EACA,kBAAkB,EAAG,GAAG;CAC3B;;AACD,AAAA,YAAY,CAAA;EACR,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,CAAC;EACjB,YAAY,EAAC,CAAE;EACf,iBAAiB,EAAE,CAAC;EACpB,eAAe,EAAE,CAAC;CACrB",
+    "sources": [
+        "../../sass/dbselection/main.scss"
+    ],
+    "names": [],
+    "file": "main.css"
+}

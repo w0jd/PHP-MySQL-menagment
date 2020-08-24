@@ -42,7 +42,7 @@
             echo "<header><p>selection failed</p></header>";} 
     }}
  dbSelection();
- goBack();
+ goBack(); 
 ?>
 <!DOCTYPE html>
 <html>
