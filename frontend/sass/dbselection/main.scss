@@ -1,17 +1,46 @@
+@import '../mixins';
+@import '../variables';
 .main_section{
+    display: flex;
+    @include flex;
+    
+}
+.main_container{
+    flex-basis: 100%;
+}
 
+.main_aside{
+@include grid(2,3,3,5);
+grid-template-columns: repeat(3,1fr);
+
+&>p{
+ vertical-align: middle;
+    text-align: center;
+ &:hover{
+     font-size: large;
+ }
+}
 }
 .first_header{
 font-size: larger;
 justify-content: center !important;
+flex-basis: 100%;
+text-align:center;
+
+}
+header>p{
+  color: colors(fivth-color)
 }
 body{
     grid-template-rows:  1fr;
 }
 .goBack_form{
-    display: grid;
-    grid-row-start: 8;
-    grid-row-end:8 ;
-    grid-column-start: 3;
-    grid-column-end: 5;
+  @include grid(8,9,3,5);
+}
+.section_input{
+    display: flex;
+    flex-basis: 80%;
+} 
+.content_hidden{
+    display:none;
 }

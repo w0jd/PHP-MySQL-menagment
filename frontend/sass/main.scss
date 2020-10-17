@@ -1,13 +1,7 @@
 @import './resets';
 @import './variables';
 @import './mixins';
-@mixin flex {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-   
-}
+
 .html_full_height{
     min-height: 100%;
 }

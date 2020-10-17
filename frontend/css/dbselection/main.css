@@ -1,6 +1,42 @@
+.main_section {
+  display: flex;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.main_container {
+  flex-basis: 100%;
+}
+
+.main_aside {
+  display: grid;
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.main_aside > p {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.main_aside > p:hover {
+  font-size: large;
+}
+
 .first_header {
   font-size: larger;
   justify-content: center !important;
+  flex-basis: 100%;
+  text-align: center;
+}
+
+header > p {
+  color: #7DBA84;
 }
 
 body {
@@ -9,9 +45,18 @@ body {
 
 .goBack_form {
   display: grid;
-  grid-row-start: 8;
-  grid-row-end: 8;
   grid-column-start: 3;
   grid-column-end: 5;
+  grid-row-start: 8;
+  grid-row-end: 9;
+}
+
+.section_input {
+  display: flex;
+  flex-basis: 80%;
+}
+
+.content_hidden {
+  display: none;
 }
 /*# sourceMappingURL=main.css.map */

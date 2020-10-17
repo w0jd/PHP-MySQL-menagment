@@ -29,7 +29,7 @@
  } 
  echo "</select></section>";
  
- echo "<section class='main_form_section'> <button type='submit'> Select</button></section>";
+ echo "<section class='log-in'> <button class='submit-button' type='submit'> Select</button></section>";
  
  if($dbConnect){
   // echo "<section class='main_form_section'>Status: connected</section>";

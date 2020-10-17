@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <head> <link rel="stylesheet" href="../../frontend/css/main.css"></head>
+    <body>
+        
+           
+       
+      
+           
 <?php
 
  session_start();
@@ -30,26 +39,28 @@
      if($dbConnect){
         $dbUsage="USE ".$database_name;
         if(mysqli_query($dbConnect,$dbUsage)){
-             echo "<header><p>selection succefull</p></header>";
-             echo "<main><section>";
-             echo "<header>Columns list</header>";
-             echo "<main>";
+             echo "<aside><p>selection succefull</p></aside>";
+        
+            
+             echo "<main class='main_container'>";
              $colSel = "DESC ".$tableName;
-             
+            
              $colList = mysqli_query($dbConnect,$colSel);
              $_SESSION['colList']=$colSel;
-             echo "<form method='POST' action='../fullTable/fullTable.php' ><section>";
+             echo "<form method='POST' action='../fullTable/fullTable.php' class='main_form' >";
+             echo "<header class='main_form_section'>Columns list</header>";
              while($row = mysqli_fetch_array($colList)){
-                     echo "<input type='checkbox' name='$row[0]'>$row[0]"."<br>";
+                     echo "<section class='main_form_section'><label for='$row[0]'>".$row[0]." "."<input type='checkbox' id='$row[0]' name='$row[0]'></section>";
                      $_SESSION["colNum"]=$i;
                      $i++;
                      
    
                  }
-                 echo "</section><button type='submit' >Send</button></form>";
+                 echo "<section class='main_form_section'><label for='fullData'>Show all data from selecteted table <input type='checkbox' name='fullData' id='fullData'>
+                 </label></section><section class='main_form_section'><button>Send</button></section></form>";
 
             }
-    
+       
     }
   $_SESSION["tableName"]=$tableName;}
  
@@ -57,7 +68,7 @@
  
  
   if(isset($_POST["TabSel"])||isset($_POST["TabCreate"])){
-    if($_POST["TabSel"]){
+     if($_POST["TabSel"]){
         tableSelect();
 
             }else if($_POST["TabCreate"]){
@@ -66,30 +77,22 @@
                     }else{
                         echo "you have to fill up one of the areas";}
                         goBack();   
-                        }else{
-                                tableSelect();
-                                goBack();
+    }else{
+        tableSelect();
+        goBack();
                             
-                            }
+         }
  
 ?>
-<!DOCTYPE html>
-<html>
-    <body>
-        <header>
-            <link rel="stylesheet" href="../../frontend/css/main.css">
-        </header>
-        <main>
-            <section>
-                <form action="../fullTable/fullTable.php" method="POST">
-                    <input type="checkbox" name="fullData" id="fullTData">
-                    <label for="fullData">Show all data from selecteted table</label>
-            </section>
+
+            
+                   
+        </main>
             <section>
                     <!-- <label for="columnName">Please type a name of the coulmn you want to select </label> -->
                     <!-- <input type="text" name="columnName" id="columnName"> -->
                     <!-- </br><button type="submit" >Send</button> -->
-                </form>
+          
                 
             </section>
         </main>
