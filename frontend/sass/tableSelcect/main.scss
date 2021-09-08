@@ -1,0 +1,49 @@
+@import '../mixins';
+@import '../variables';
+.main_form_section {
+    padding: 0.25rem;
+    &>button{
+        flex-basis: 100%;
+    }
+}
+.first_header{
+    font-size: larger;
+    justify-content: center !important;
+    flex-basis: 100%;
+    text-align:center;
+    @include grid(0,1,0,1)
+    }
+    header>p{
+      color: colors(fivth-color)
+    }
+    .main_section{
+        // display: flex;
+        @include flex;
+        flex-basis: 40%;
+        margin-top: 1rem;
+
+        
+    }
+    .main_section>header{
+        flex-basis: 100%;
+    }
+    .main_container{
+        @include flex;
+        flex-basis: 30%;
+
+        order:2 ;
+    }
+    form{
+        row-gap: 0 !important;
+    }
+    .main_form{
+        @include grid(2,7,3,5) ;
+    }
+    .goBack_form{
+        @include flex;
+        flex-basis: 30%;
+        order:1 ;
+    }
+    button{
+        flex-basis: 100%;
+    }

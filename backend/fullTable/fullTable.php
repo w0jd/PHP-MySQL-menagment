@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="../../frontend/css/main.css">
+  <link rel="stylesheet" href="../../frontend/css/fullTable/main.css">
+
 </head>
-<body>
+<body class="body_container">
 <?php
 
 session_start();
@@ -14,7 +16,7 @@ include '../phpFunctions/functions.php';
 include '../phpVariables/variables.php';
 function goBack()
 {
-  echo "<form method='post' action='../tableSelect/tableSelect.php'>  
+  echo "<form class='goBack_form' method='post' action='../tableSelect/tableSelect.php'>  
   <button type='submit'>Go back</button></form>";
   setcookie("goingBack","1",time()+60*60);
 }
@@ -30,20 +32,23 @@ function fullTable()
  
  if($dbConnect){
     $dbUsage="USE ".$database_name;
+   
     if(mysqli_query($dbConnect,$dbUsage)){
-        echo "<header><p>selection succefull</p></header>";
-        echo "<main><section>";
     
-        echo "<header> list of data</header>";
+       
+        echo "<header class='main_header first_header'><p class='main_header_paragraph'>selection succefull</p></header>";
+        echo "<main class='main_container main_form'  ><section class='main_section'>";
     
-        echo "<main><table><thead>";
+        echo "<header class='main_section_header'> list of data</header>";
+    
+        echo "<main class='sub_main '><table class='table'><thead class='table_header'>";
 
         $colSel = "DESC ".$tableName;
         $colList = mysqli_query($dbConnect,$colSel);
         while($row = mysqli_fetch_array($colList)){
          echo "<th> ".$row[0]."</th> ";
         }
-        echo "</thead><tbody>";
+        echo "</thead><tbody class='table_body'>";
         $selectionCommand='SELECT * FROM '.$tableName.';';
         $selection = mysqli_query($dbConnect,$selectionCommand);
 
@@ -79,13 +84,13 @@ function fullTable()
       if($dbConnect){
         $dbUsage="USE ".$database_name;
         if(mysqli_query($dbConnect,$dbUsage)){
-        echo "<header><p>selection succefull</p></header>";
-        echo "<main><section>";
+        echo "<header  class='main_header first_header'><p class='main_header_paragraph'>selection succefull</p></header>";
+        echo "<main class='main_container main_form' ><section class='main_section'>";
         $colList=$_SESSION['colList'];
         $specfied="";
           
         $colList = mysqli_query($dbConnect,$colList );
-        echo "<main><section><table><thead><tr>";
+        echo "<main class='sub_main'><table class='table'><thead class='table_header'>";
         while($row = mysqli_fetch_array($colList)){ // loop to check which cols were selected
           $rowName=  $row[0]; // asing value string of row to variable
           if( isset($_POST[ $rowName])){ //checking what was selected
@@ -113,7 +118,7 @@ function fullTable()
           echo "<td>".$row[$x]."</td>";
           if($x==$selColNum){echo '</tr>';}
         }}
-        echo '</tbody></table></section></main>';
+        echo '</tbody></table></main></section></main>';
     }}
 
 
@@ -128,6 +133,7 @@ function fullTable()
       echo "both areas can't be empty";
   }
   goBack();
+
 ?>
 
   

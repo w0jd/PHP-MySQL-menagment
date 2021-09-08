@@ -1,0 +1,67 @@
+.main_form_section {
+  padding: 0.25rem;
+}
+
+.main_form_section > button {
+  flex-basis: 100%;
+}
+
+.first_header {
+  font-size: larger;
+  justify-content: center !important;
+  flex-basis: 100%;
+  text-align: center;
+  display: grid;
+  grid-column-start: 0;
+  grid-column-end: 1;
+  grid-row-start: 0;
+  grid-row-end: 1;
+}
+
+header > p {
+  color: #7DBA84;
+}
+
+.main_section {
+  display: flex;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.main_section > header {
+  flex-basis: 100%;
+}
+
+.main_container {
+  flex-basis: 100%;
+  order: 2;
+}
+
+form {
+  row-gap: 0 !important;
+}
+
+.main_form {
+  display: grid;
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 7;
+}
+
+.goBack_form {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-basis: 30%;
+  order: 1;
+}
+
+button {
+  flex-basis: 100%;
+}
+/*# sourceMappingURL=main.css.map */

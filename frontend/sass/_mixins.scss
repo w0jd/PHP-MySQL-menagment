@@ -25,3 +25,16 @@
 @function colors($color-number){
     @return map-get($main-colors, $color-number );
 }
+@mixin mobile {
+    @media (max-width:840px) {
+        @content;
+    }
+}
+$background-color-light:#f0f8ff;
+@function colors($color-number){
+    @return map-get($main-colors, $color-number );
+}
+
+@function sizes($size){
+    @return map-get($sizes, $size);
+}

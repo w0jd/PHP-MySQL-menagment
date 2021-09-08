@@ -5,19 +5,6 @@
 .html_full_height{
     min-height: 100%;
 }
-@mixin mobile {
-    @media (max-width:840px) {
-        @content;
-    }
-}
-$background-color-light:#f0f8ff;
-@function colors($color-number){
-    @return map-get($main-colors, $color-number );
-}
-
-@function sizes($size){
-    @return map-get($sizes, $size);
-}
 
 body{
     background: colors(background-color-light);
@@ -39,7 +26,7 @@ body{
     box-shadow: 0 0 2vw colors( third-color ) ;
     border: solid;
     @include grid(3,7,3,5);
- 
+
  
     row-gap: sizes( medium );
     grid-template-rows: repeat(2, 1fr);
@@ -73,7 +60,22 @@ body{
     margin: sizes(v-small)
  
 }
-
+.content_hidden{
+    display:none;
+}
+.first_header{
+    font-size: larger;
+    justify-content: center !important;
+    flex-basis: 100%;
+    text-align:center;
+    
+    }
+    header>p{
+      color: colors(fivth-color)
+    }
+.goBack_form{
+    @include grid(8,9,3,5);
+  }
 // body:hover{
 //     @include theme($light-theme: false);
 // }

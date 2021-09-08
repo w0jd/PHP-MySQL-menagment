@@ -43,14 +43,6 @@ body {
   grid-template-rows: 1fr;
 }
 
-.goBack_form {
-  display: grid;
-  grid-column-start: 3;
-  grid-column-end: 5;
-  grid-row-start: 8;
-  grid-row-end: 9;
-}
-
 .section_input {
   display: flex;
   flex-basis: 80%;
