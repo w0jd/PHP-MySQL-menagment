@@ -39,6 +39,7 @@
     }
     .main_form{
         @include grid(2,7,3,5) ;
+        flex-wrap: wrap;
         // justify-content: center; 
     }
     .goBack_form{
@@ -48,4 +49,18 @@
     }
     button{
         flex-basis: 100%;
+    }
+
+    .input_container{
+        @include flex;
+        flex-basis: 100%;
+    } 
+    aside{
+        flex-wrap: wrap;
+    }
+    .main_form{
+        grid-template-rows: 10%  1fr;
+    }
+    span{
+        font-weight: bold;
     }

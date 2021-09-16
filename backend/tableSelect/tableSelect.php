@@ -4,7 +4,9 @@
 <head>
     <link rel="stylesheet" href="../../frontend/css/main.css">
     <link rel="stylesheet" href="../../frontend/css/tableSelect/main.css">
-    <script src="../../frontend/javascript/selection.js" async defer></script>
+    <script src="../../frontend/javascript/selection.js" async defer>
+
+    </script>
 </head>
 
 <body>
@@ -63,6 +65,7 @@
                     // echo "a";
                     // echo $row[0]."/".$row[1]."/".$row[2]."/".$row[3]."</br>";
                     $not=$not."and table_name!='".$row[2]."' ";
+                    // echo $joiningQuery;
                     // echo $objectName;
                     
                     $i++; 
@@ -82,6 +85,9 @@
                     $mainTable=  $row[0];
                 }
                 // echo "asasasas".$mainTable;
+                $from="from ".$mainTable." ".$joiningQuery;
+                setcookie("query", $from, mktime().time()+60*6);
+                // echo $_COOKIE["query"];
                 $useDB="USE ".$_SESSION["db_Name"];
                 $dbUsage=mysqli_query($dbConnect,$useDB);
                 if($dbUsage){
@@ -96,30 +102,34 @@
                     // echo "aca";
                     echo "<form method='POST' action='../fullTable/fullTable.php' class='main_form' >";
                     echo "<header class='main_form_section'>Columns list</header>";
+                    echo "<aside class='main_form_section' value='$mainTable'><span>".$mainTable."</span>";
                    while( $row=mysqli_fetch_array($showTablesExecution)){
-                        echo "<section class='main_form_section'>
-                        <label for='$row[0]'>".$row[0]." "."<input type='checkbox' class='selcection' id='$row[0]' name='selection' value='$row[0]'></section>";
+                        echo "<section class='input_container'>
+                        <label for='$row[0]'>".$row[0]." "."<input type='checkbox' class='selcection' id='$row[0]' name='selection' value='$mainTable.$row[0]'></section>";
 
                     //    echo "aa";
                    }
+                   echo "</aside>";
 
                 }}
                 for($o=0;$o<$i;$o++){    
                     // echo $objectName->tableName[0];
                     $showTables="Desc ".$objectName->referencedTableName[$o].";";
+                    $refTable=$objectName->referencedTableName[$o];
                     // print_r($objectName->referencedTableName);
-                    // echo "gggg".$showTables;
+                    echo "<aside class='main_form_section' value='$refTable'><span>".$objectName->referencedTableName[$o]."</span>";
                     $showTablesExecution=mysqli_query($dbConnect,$showTables);
-                    // echo $showTables;
+                    // echo $showTablesExecution;
                     if($showTablesExecution){
                         // echo "aca";
                        while( $row=mysqli_fetch_array($showTablesExecution)){
-                            echo "<section class='main_form_section'><label for='$row[0]'>".$row[0]." "."<input name='selection'  class='selcection' type='checkbox' id='$row[0]' value='$row[0]'></section>";
+                            echo "<section class='input_container'><label for='$row[0]'>".$row[0]." "."<input name='selection'  class='selcection' type='checkbox' id='$row[0]' value='$refTable.$row[0]'></section>";
 
                         //    echo "aa";
                        }
-                        
                     }
+                    echo "</aside>";
+
                 }
                 $_SESSION['mainTable']=$mainTable;
             $searchingQuery="SELECT* FROM ".$mainTable." WHERE REFERENCED_COLUMN_NAME is NOT NULL and TABLE_SCHEMA='".$_SESSION["db_Name"]."'";
@@ -177,12 +187,13 @@
                     }
             
             }
-        $_SESSION["tableName"]=$tableName;}
+        $_SESSION["tableName"]=$tableName;
+    }
         
 
         
             
-        if(isset($_POST["TabSel"])||isset($_POST["TabCreate"])){
+    if(isset($_POST["TabSel"])||isset($_POST["TabCreate"])){
             if(isset($_POST['allTables'])){
                     allTables();
             } else{

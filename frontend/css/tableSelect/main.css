@@ -87,6 +87,8 @@ form {
   -ms-grid-row: 2;
       grid-row-start: 2;
   grid-row-end: 7;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .goBack_form {
@@ -112,5 +114,36 @@ form {
 button {
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
+}
+
+.input_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+}
+
+aside {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.main_form {
+  -ms-grid-rows: 10%  1fr;
+      grid-template-rows: 10%  1fr;
+}
+
+span {
+  font-weight: bold;
 }
 /*# sourceMappingURL=main.css.map */

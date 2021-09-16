@@ -1,24 +1,32 @@
 console.log("jebać js")
-let btn=document.querySelector("#last_section")
+let btn=document.querySelector(".send_btn")
     // let wybrane=new array(0);
 let query="select "    
+
 // let a=document.querySelector('.fullData')
+let i=0
 btn.addEventListener("mouseover",
 function whatSelected(){
     query="select "
-    let zmienna=document.querySelectorAll(".selcection");
-
+    let tables=document.querySelectorAll(".main_form_section")
+    // let zmienna=document.querySelectorAll(".selcection");
+    console.log(tables)
      for(let el of zmienna){
         // console.log(el.value)
 
      if(el.checked){
         
         console.log("o chuj")
+        // console.log(tables[i])
+
         query+=" "+el.value+" ,"
         }
-
+        i++
     }
     query=query.substring(0,query.length - 1)
     console.log(query)
+    document.cookie="cathedBoxes="+query;
+    
+
 })
 
