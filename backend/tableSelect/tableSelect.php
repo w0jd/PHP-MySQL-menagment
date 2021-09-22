@@ -35,6 +35,7 @@
     function allTables(){
         
         $dbConnect= sessionCheck();    
+      
         $database_name="USE information_schema";
         $dbSelection=mysqli_query($dbConnect,$database_name);
         if($dbSelection){
@@ -43,6 +44,7 @@
         //   echo $searchingQuery;
             $i=0;
             $j=0;
+            $_SESSION['allTables']=1;
             $tableSel=mysqli_query($dbConnect,$searchingQuery);
             // echo $searchingQuery;
             if($tableSel){
@@ -61,7 +63,7 @@
             
                     $objectName->referencedTableName[$i]=$row[2]; 
                     $objectName->referencedColumnName[$i]=$row[3]; 
-                    $joiningQuery=$joiningQuery." inner join ".$row[2]." on ".$row[1]." = ".$row[3];
+                    $joiningQuery=$joiningQuery." inner join ".$row[2]." on ".$row[0].".".$row[1]." = ".$row[2].".".$row[3];
                     // echo "a";
                     // echo $row[0]."/".$row[1]."/".$row[2]."/".$row[3]."</br>";
                     $not=$not."and table_name!='".$row[2]."' ";
@@ -85,11 +87,21 @@
                     $mainTable=  $row[0];
                 }
                 // echo "asasasas".$mainTable;
+                $_SESSION['join']=$joiningQuery;
                 $from="from ".$mainTable." ".$joiningQuery;
                 setcookie("query", $from, mktime().time()+60*6);
                 // echo $_COOKIE["query"];
                 $useDB="USE ".$_SESSION["db_Name"];
                 $dbUsage=mysqli_query($dbConnect,$useDB);
+                if(isset($_POST["TabSel"])){
+                
+                    $_SESSION['tableName'] =cookieCheck($_POST["TabSel"],$_POST["TabSel"]);
+                    // echo 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'.$tableName;       
+                    
+                    }else{
+                    $_SESSION['tableName']=cookieCheck($_SESSION['tableName'],$_SESSION['tableName']);
+                    //    echo 'bbbbbbbbbbbbbbbbbbbbb'; 
+                    }
                 if($dbUsage){
                 $showTables="DESC ".$mainTable.";";
                 // echo $showTables;
@@ -155,11 +167,18 @@
             $dbConnect= sessionCheck();
             $database_name=$_SESSION["db_Name"];
             if(isset($_POST["TabSel"])){
+                
             $tableName =cookieCheck($_POST["TabSel"],$_POST["TabSel"]);
+            // echo 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'.$tableName;       
+            
             }else{
-            $tableName=cookieCheck($_SESSION['tableName'],$_SESSION['tableName']);}
-                                
+            $tableName=cookieCheck($_SESSION['tableName'],$_SESSION['tableName']);
+            //    echo 'bbbbbbbbbbbbbbbbbbbbb'; 
+            }
             $colNum=0;
+            // echo 'bbbbbbbbbbbbbbbbbbbbb'; 
+            
+
             $i=0;
             if($dbConnect){
                 $dbUsage="USE ".$database_name;
@@ -188,11 +207,11 @@
             
             }
         $_SESSION["tableName"]=$tableName;
-    }
+    
         
 
         
-            
+        }        
     if(isset($_POST["TabSel"])||isset($_POST["TabCreate"])){
             if(isset($_POST['allTables'])){
                     allTables();
