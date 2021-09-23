@@ -120,7 +120,7 @@ function specyficData() {
         // $specfied=$_SESSION['specyfied'];
 
         // echo $cookiesString;
-        $specfiedTableCommand=$re.' FROM '.$tableName.$_SESSION['join'].';';
+        $specfiedTableCommand=$re.' FROM '.$_SESSION['mainTable'].$_SESSION['join'].';';
         // echo $specfiedTableCommand;
       }
 

@@ -67,6 +67,7 @@
                     // echo "a";
                     // echo $row[0]."/".$row[1]."/".$row[2]."/".$row[3]."</br>";
                     $not=$not."and table_name!='".$row[2]."' ";
+                    // echo $not;
                     // echo $joiningQuery;
                     // echo $objectName;
                     
