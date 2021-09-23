@@ -16,8 +16,8 @@ include '../phpVariables/variables.php';
 
 function goBack() {
   echo "<form class='goBack_form' method='post' action='../tableSelect/tableSelect.php'>  
-<button type='submit'>Go back</button></form>";
-setcookie("goingBack", "1", time()+60*60);
+  <button type='submit'>Go back</button></form>";
+  setcookie("goingBack", "1", time()+60*60);
 }
 
 function fullTable() {
@@ -44,7 +44,7 @@ function fullTable() {
 
       $colSel="DESC ".$tableName;
       $colList=mysqli_query($dbConnect, $colSel);
-      echo $tableName;
+      // echo $tableName;
       $selectionCommand='SELECT * FROM '.$tableName;
 
       if(isset($_SESSION['allTables'])) {
@@ -93,8 +93,8 @@ function specyficData() {
   $database_name=$_SESSION["db_Name"];
   $tableName=$_SESSION["tableName"];
   //$specfied=$_POST["columnName"];
-
-
+  // print_r($_COOKIE);
+  // echo "aaaaaaaa".$_COOKIE['cathedBoxes'];
 
 
 
@@ -105,54 +105,75 @@ function specyficData() {
     if(mysqli_query($dbConnect, $dbUsage)) {
       echo "<header  class='main_header first_header'><p class='main_header_paragraph'>selection succefull</p></header>";
       echo "<main class='main_container main_form' ><section class='main_section'>";
-      $colList=$_SESSION['colList'];
+     
       $specfied="";
-
-      $colList=mysqli_query($dbConnect, $colList);
+      $selectionCommand="";
+      
       echo "<main class='sub_main'><table class='table'><thead class='table_header'>";
+      if(isset($_SESSION['allTables'])) {
+        // $selectionCommand=$selectionCommand." ".$_SESSION['join'];
+        // echo $selectionCommand;
+        $re=$_COOKIE['cathed'];
+        // echo "gówno".$re;
+        // $cookiesString=implode(", ",$_COOKIE['cathedBoxes']);
 
-      while($row=mysqli_fetch_array($colList)) {
-        // loop to check which cols were selected
-        $rowName=$row[0]; // asing value string of row to variable
+        // $specfied=$_SESSION['specyfied'];
 
-        if(isset($_POST[ $rowName])) {
-          //checking what was selected
-
-          echo "<th>".$row[0]."</th>";
-
-          if($selColNum<=0) {
-            //if it's first value don't write ","
-            $specfied=$specfied." ".$rowName." ";
-          }
-
-          else {
-            $specfied=$specfied.",".$rowName." "; //if it's not first value then wirete "," before it
-          }
-
-          $_SESSION['specyfied']=$specfied;
-          $selColNum++;
-        }
+        // echo $cookiesString;
+        $specfiedTableCommand=$re.' FROM '.$tableName.$_SESSION['join'].';';
+        // echo $specfiedTableCommand;
       }
+
+
+      else {
+        $colList=$_SESSION['colList'];
+        $colList=mysqli_query($dbConnect, $colList);
+        $specfied=$_SESSION['specyfied'];
+        $specfiedTableCommand='SELECT '.$specfied.' FROM '.$tableName.';';
+        while($row=mysqli_fetch_array($colList)) {
+          // loop to check which cols were selected
+          $rowName=$row[0]; // asing value string of row to variable
+
+          if(isset($_POST[ $rowName])) {
+            //checking what was selected
+
+            echo "<th>".$row[0]."</th>";
+
+            if($selColNum<=0) {
+              //if it's first value don't write ","
+              $specfied=$specfied." ".$rowName." ";
+            }
+
+            else {
+              $specfied=$specfied.",".$rowName." "; //if it's not first value then wirete "," before it
+            }
+
+            $_SESSION['specyfied']=$specfied;
+            $selColNum++;
+          }
+      }}
 
       echo "</tr></thead><tbody>";
       $selColNum--;
-      $specfied=$_SESSION['specyfied'];
-      $specfiedTableCommand='SELECT '.$specfied.' FROM '.$tableName.';';
-
+     
+      echo $specfiedTableCommand;
 
       $specfiedTable=mysqli_query($dbConnect, $specfiedTableCommand);
-
+      
       while($row=mysqli_fetch_array($specfiedTable)) {
-        for($x=0; $x<=$selColNum; $x++) {
+        // echo $row[1].$row[0];
+        $x=0;
+        while(isset($row[$x])) {
           if($x==0) {
             echo '<tr>';
           }
-
+          // echo "aaaaaaa".$x;
           echo "<td>".$row[$x]."</td>";
 
           if($x==$selColNum) {
             echo '</tr>';
           }
+          $x++;
         }
       }
 
